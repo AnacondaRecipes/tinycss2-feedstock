@@ -41,6 +41,7 @@ about:
     CSS Syntax Level 3 Specification.
   doc_url: https://doc.courtbouillon.org/tinycss2/stable/
   dev_url: https://github.com/Kozea/tinycss2
+  doc_source_url: https://github.com/Kozea/tinycss2/tree/v{{ version }}/docs
 
 extra:
   recipe-maintainers:
