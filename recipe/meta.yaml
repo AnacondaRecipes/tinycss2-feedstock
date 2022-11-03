@@ -1,7 +1,8 @@
+{% set name = "tinycss2" %}
 {% set version = "1.2.1" %}
 
 package:
-  name: tinycss2
+  name: {{ name }}
   version: {{ version }}
 
 source:
@@ -10,18 +11,17 @@ source:
 
 build:
   number: 0
-  noarch: python
   script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
   host:
     - flit
-    - python >=3.5
+    - python
     - pip
     - pytest-runner
     - webencodings >=0.4
   run:
-    - python >=3.5
+    - python
     - webencodings >=0.4
 
 test:
