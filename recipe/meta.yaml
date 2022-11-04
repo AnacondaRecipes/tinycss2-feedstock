@@ -20,9 +20,9 @@ requirements:
     - python
     - pip
     - pytest-runner
+    - setuptools
     - webencodings 0.4
     - wheel
-    - setuptools
   run:
     - python
     - webencodings >=0.4
