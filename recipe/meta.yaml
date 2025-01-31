@@ -1,5 +1,5 @@
 {% set name = "tinycss2" %}
-{% set version = "1.2.1" %}
+{% set version = "1.4.0" %}
 
 package:
   name: {{ name }}
@@ -7,33 +7,34 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 8cff3a8f066c2ec677c06dbc7b45619804a6938478d9d73c284b29d14ecb0627
+  sha256: 10c0972f6fc0fbee87c3edb76549357415e94548c1ae10ebccdea16fb404a9b7
 
 build:
   number: 0
-  script: {{ PYTHON }} -m pip install . --no-deps -vv
-  skip: True  # [py<37]
+  script: {{ PYTHON }} -m pip install . --no-deps -vv --no-build-isolation
+  skip: True  # [py<38]
 
 requirements:
   host:
-    - flit-core 3.2
+    - flit-core >=3.2,<4
     - python
     - pip
-    - pytest-runner
-    - setuptools
-    - webencodings 0.5.1
-    - wheel
   run:
     - python
     - webencodings >=0.4
 
 test:
+  source_files:
+    - tests
   imports:
     - tinycss2
   requires:
     - pip
+    - pytest
+    - ruff
   commands:
     - pip check
+    - pytest -v
 
 about:
   home: https://www.courtbouillon.org/tinycss2
@@ -42,8 +43,8 @@ about:
   license_file: LICENSE
   summary: Low-level CSS parser for Python
   description: |
-    tinycss2 is a rewrite of tinycss with a simpler API, based on the more recent
-    CSS Syntax Level 3 Specification.
+    tinycss2 is a low-level CSS parser and generator written in Python: it can parse strings, 
+    return objects representing tokens and blocks, and generate CSS strings corresponding to these objects.
   doc_url: https://doc.courtbouillon.org/tinycss2/stable/
   dev_url: https://github.com/Kozea/tinycss2
 
