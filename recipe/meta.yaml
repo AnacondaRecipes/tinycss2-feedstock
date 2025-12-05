@@ -31,11 +31,12 @@ test:
   requires:
     - pip
     - pytest
-    - ruff
+    - ruff  # [not (py==314 and win)]
   commands:
     - pip check
     - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
-    - pytest -v
+    # Missing ruff py3.14 package for windows 
+    - pytest -v # [not (py==314 and win)]
 
 about:
   home: https://www.courtbouillon.org/tinycss2
